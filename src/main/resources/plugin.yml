@@ -1,0 +1,7 @@
+name: Tails
+version: '1.0'
+main: me.junioraww.tails.Main
+api-version: '1.21'
+commands:
+  equip:
+    description: OwO
