@@ -4,4 +4,10 @@ main: me.junioraww.tails.Main
 api-version: '1.21'
 commands:
   equip:
-    description: OwO
+    description: Equip Owned Item
+  items:
+    description: Your Inventory
+  spray:
+    description: Graffiti!
+  money:
+    aliases: [ bal, me ]

@@ -1,11 +1,10 @@
-package me.junioraww.tails.data.types;
+package me.junioraww.tails.data.types.animation;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import org.joml.Matrix4f;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 
 public class Matrix4fDeserializer implements JsonDeserializer<Matrix4f> {

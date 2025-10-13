@@ -1,5 +1,7 @@
 package me.junioraww.tails.commands;
 
+import me.junioraww.tails.Main;
+import me.junioraww.tails.storages.Wallet;
 import me.junioraww.tails.utils.TailSpawn;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-public class Equip implements CommandExecutor {
+public class Money implements CommandExecutor {
     /*
     TODO одеть, снять аксессуар/питомца
      */
@@ -17,12 +19,8 @@ public class Equip implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (sender instanceof Player player) {
-            try {
-                TailSpawn.action(player);
-            } catch (IOException e) {
-                player.sendRichMessage("<red>Ошибка!");
-                e.printStackTrace();
-            }
+            Wallet wallet = Main.getPlugin().getStorage().getWallet(player);
+            player.sendRichMessage("<green>Ваш игровой счет: <yellow>" + wallet.getBalance());
 
             return true;
         }

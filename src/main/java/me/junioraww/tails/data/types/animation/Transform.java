@@ -1,4 +1,4 @@
-package me.junioraww.tails.data.types;
+package me.junioraww.tails.data.types.animation;
 
 import org.joml.Matrix4f;
 
