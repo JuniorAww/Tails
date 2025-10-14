@@ -12,6 +12,7 @@ import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class TLSClient {
@@ -139,12 +140,21 @@ public class TLSClient {
         }
     }
 
-    public Response sendRequest(Request request) throws InterruptedException {
+    public CompletableFuture<Response> sendRequest(Request request) {
+        CompletableFuture<Response> future = new CompletableFuture<>();
         send(request.toString());
 
-        // Блокирует поток до ответа
-        String responseStr = responseQueue.take();
+        new Thread(() -> {
+            try {
+                String line = responseQueue.take();
+                Response resp = Response.fromString(line);
+                future.complete(resp);
+            } catch (InterruptedException e) {
+                future.completeExceptionally(e);
+            }
+        }).start();
 
-        return Response.fromString(responseStr);
+        return future;
     }
+
 }

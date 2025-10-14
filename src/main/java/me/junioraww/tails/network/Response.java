@@ -37,7 +37,7 @@ public class Response {
         RESERVED_7(7),
         RESERVED_8(8),
         RESERVED_9(9),
-        WALLET(10);
+        WALLETS(10);
 
         private final int id;
         Result(int id) {
