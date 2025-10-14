@@ -39,7 +39,8 @@ public class Request {
         RESERVED_8(8),
         RESERVED_9(9),
         SYNC(10),
-        USE(11);
+        ADD_TO_BALANCE(11),
+        PAY_OTHER(12);
 
         private final int id;
         Action(int id) {

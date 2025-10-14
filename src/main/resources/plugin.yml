@@ -11,3 +11,6 @@ commands:
     description: Graffiti!
   money:
     aliases: [ bal, me ]
+  pay:
+    aliases: [ transfer ]
+    description: Pay to another player
