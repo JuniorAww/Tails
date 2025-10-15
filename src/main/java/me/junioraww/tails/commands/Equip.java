@@ -18,7 +18,11 @@ public class Equip implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (sender instanceof Player player) {
             try {
-                TailSpawn.action(player);
+                if (!TailSpawn.isEquipped(player)) {
+                    TailSpawn.wear(player, "plugins/Tails/fox.json");
+                } else {
+                    TailSpawn.unwear(player);
+                }
             } catch (IOException e) {
                 player.sendRichMessage("<red>Ошибка!");
                 e.printStackTrace();

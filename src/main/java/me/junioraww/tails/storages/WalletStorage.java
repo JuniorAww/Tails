@@ -51,7 +51,7 @@ public class WalletStorage implements Listener {
     public void playerLeft(PlayerConnectionCloseEvent event) {
         String name = event.getPlayerName().toLowerCase();
 
-        // TODO may be asynchronous
+        // TODO may be asynchronous, check event.isAsynchronous()
 
         if (wallets.containsKey(name)) wallets.remove(name);
     }
