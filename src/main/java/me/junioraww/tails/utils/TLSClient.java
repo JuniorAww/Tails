@@ -1,10 +1,8 @@
 package me.junioraww.tails.utils;
 
-import com.google.gson.Gson;
 import me.junioraww.tails.Main;
 import me.junioraww.tails.network.Request;
 import me.junioraww.tails.network.Response;
-import org.bukkit.Bukkit;
 
 import javax.net.ssl.*;
 import java.io.*;
@@ -19,7 +17,6 @@ public class TLSClient {
     private SSLSocket socket;
     private BufferedReader in;
     private PrintWriter out;
-    private final Gson gson = new Gson();
 
     // Очередь для long-polling ответов
     private final BlockingQueue<String> responseQueue = new LinkedBlockingQueue<>();

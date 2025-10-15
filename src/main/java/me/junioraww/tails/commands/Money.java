@@ -15,10 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 
 public class Money implements CommandExecutor {
-    /*
-    TODO одеть, снять аксессуар/питомца
-     */
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (sender instanceof Player player) {

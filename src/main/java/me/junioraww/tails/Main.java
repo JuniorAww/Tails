@@ -6,14 +6,12 @@ import me.junioraww.tails.commands.Money;
 import me.junioraww.tails.commands.Spray;
 import me.junioraww.tails.data.types.wallet.SyncWalletsArray;
 import me.junioraww.tails.network.Request;
-import me.junioraww.tails.network.Response;
 import me.junioraww.tails.storages.PlayerCache;
 import me.junioraww.tails.storages.WalletStorage;
 import me.junioraww.tails.utils.TLSClient;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
