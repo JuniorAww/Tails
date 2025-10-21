@@ -2,7 +2,10 @@ package me.junioraww.tails.storages;
 
 import com.destroystokyo.paper.event.player.PlayerConnectionCloseEvent;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import me.junioraww.tails.Main;
+import me.junioraww.tails.data.types.items.Attach;
+import me.junioraww.tails.data.types.wallet.Item;
 import me.junioraww.tails.data.types.wallet.SyncWalletsArray;
 import me.junioraww.tails.network.Request;
 import org.bukkit.Bukkit;
@@ -13,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WalletStorage implements Listener {
@@ -24,6 +28,7 @@ public class WalletStorage implements Listener {
     }
 
     public Wallet getWallet(Player player) {
+        player.sendMessage("d" + wallets);
         String username = player.getName().toLowerCase();
         return wallets.get(username);
     }
@@ -32,11 +37,17 @@ public class WalletStorage implements Listener {
         Request request = new Request(Request.Action.SYNC, name + ',' + address);
 
         Main.getPlugin().getClient().sendRequest(request).thenAccept(response -> {
-            Bukkit.getLogger().info(response.getArg());
-
             var array = gson.fromJson(response.getArg(), SyncWalletsArray.class);
 
             wallets.put(name.toLowerCase(), array.wallets[0]);
+
+            //TODO
+            List<Attach> equipped = array.wallets[0].getItems()
+                    .stream().filter(x -> x.getType() == Item.Type.ATTACH && x.isEquipped())
+                    .map(x -> (Attach) x)
+                    .toList();
+
+            for(var it : equipped) {}
         });
     }
 

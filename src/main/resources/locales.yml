@@ -1,0 +1,4 @@
+balance:
+  en: "<green>Ваш игровой счет: <yellow>%0"
+  ru: "<green>Your game balance: <yellow>%0"
+  ua: "<green>Ваш игровой счет: <yellow>%0"

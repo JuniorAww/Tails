@@ -2,14 +2,17 @@ package me.junioraww.tails;
 
 import com.google.gson.Gson;
 import me.junioraww.tails.commands.Equip;
+import me.junioraww.tails.commands.Items;
 import me.junioraww.tails.commands.Money;
 import me.junioraww.tails.commands.Spray;
 import me.junioraww.tails.data.types.wallet.SyncWalletsArray;
 import me.junioraww.tails.network.Request;
 import me.junioraww.tails.storages.PlayerCache;
 import me.junioraww.tails.storages.WalletStorage;
+import me.junioraww.tails.utils.Locales;
 import me.junioraww.tails.utils.TLSClient;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -30,9 +33,6 @@ public final class Main extends JavaPlugin {
     public WalletStorage getStorage() {
         return storage;
     }
-    /*
-    TODO Локализация на 3 языка
-     */
 
     @Override
     public void onEnable() {
@@ -40,6 +40,7 @@ public final class Main extends JavaPlugin {
         client = new TLSClient();
         storage = new WalletStorage();
         players = new PlayerCache();
+        Locales.init();
 
         if (!getDataFolder().exists()) getDataFolder().mkdirs();
 
@@ -64,7 +65,7 @@ public final class Main extends JavaPlugin {
         this.getCommand("equip").setExecutor(equip);
         this.getCommand("spray").setExecutor(spray);
         this.getCommand("money").setExecutor(new Money());
-        //this.getCommand("items").setExecutor(items)
+        this.getCommand("items").setExecutor(new Items());
 
         getServer().getPluginManager().registerEvents(storage, this);
 

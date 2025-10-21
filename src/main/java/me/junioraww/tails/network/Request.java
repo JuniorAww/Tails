@@ -41,7 +41,9 @@ public class Request {
         SYNC(10),
         ADD_TO_BALANCE(11),
         PAY_OTHER(12),
-        USE(13);
+        USE(13),
+        LOAD_MODELS(14), // TODO отдельный поток / статика для моделей
+        ;
 
         private final int id;
         Action(int id) {

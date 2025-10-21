@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.mojang.math.Transformation;
 import me.junioraww.tails.Main;
 import me.junioraww.tails.data.types.animation.*;
+import me.junioraww.tails.data.types.items.Attach;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -34,7 +35,7 @@ import java.nio.file.Files;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class TailSpawn {
+public class SpawnAttach {
     private static Gson gson = new GsonBuilder()
             .registerTypeAdapter(Matrix4f.class, new Matrix4fDeserializer())
             .create();
@@ -43,13 +44,15 @@ public class TailSpawn {
     todo code review & shrink
     todo timeouts
      */
-    public static void wear(Player sender, String modelPath) throws IOException {
+    public static void wear(Player sender, Attach attach) throws IOException {
         if (players.contains(sender)) {
             sender.sendRichMessage("<red>Вы уже надели хвост!");
             return;
         }
 
-        File file = new File(modelPath);
+        Attach.Meta meta = attach.getMeta();
+
+        File file = new File(meta.getUri());
         String data = Files.readString(file.toPath());
         Animation animation = gson.fromJson(data, Animation.class);
 

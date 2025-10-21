@@ -2,17 +2,13 @@ package me.junioraww.tails.commands;
 
 import me.junioraww.tails.Main;
 import me.junioraww.tails.network.Request;
-import me.junioraww.tails.network.Response;
 import me.junioraww.tails.storages.Wallet;
-import me.junioraww.tails.utils.TailSpawn;
-import org.bukkit.Bukkit;
+import me.junioraww.tails.utils.Locales;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 
 public class Money implements CommandExecutor {
     @Override
@@ -27,7 +23,8 @@ public class Money implements CommandExecutor {
                 });
             } else {
                 Wallet wallet = Main.getPlugin().getStorage().getWallet(player);
-                player.sendRichMessage("<green>Ваш игровой счет: <yellow>" + wallet.getBalance());
+                Locales.Text.Balance.send(player, wallet.getBalance());
+                // <green>Ваш игровой счет: <yellow>%0
             }
             return true;
         }
